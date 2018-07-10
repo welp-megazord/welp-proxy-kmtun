@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SDC Proxy</title>
+</head>
+
+<body>
+  <div id="reviews"></div>
+  <script src="/lib/react.development.js"></script>
+  <script src="/lib/react-dom.development.js"></script>
+  <script src="http://localhost:2000/app.js"></script>
+  <script>
+    ReactDOM.render(
+      React.createElement(ReviewComponent),
+      document.getElementById('reviews')
+    );
+  </script>
+</body>
+
+</html>

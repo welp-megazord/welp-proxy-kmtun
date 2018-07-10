@@ -1,0 +1,29 @@
+{
+  "name": "welp-proxy-kmtun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/welp-megazord/welp-proxy-kmtun.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/welp-megazord/welp-proxy-kmtun/issues"
+  },
+  "homepage": "https://github.com/welp-megazord/welp-proxy-kmtun#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "node-fetch": "^2.1.2",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
