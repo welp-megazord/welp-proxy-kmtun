@@ -1,0 +1,12 @@
+#beefore {
+  color: white;
+  margin: 0 6px;
+  display: inline-block;
+}
+
+ul{
+  margin: 0;
+  padding: 0;
+  -webkit-padding-start: 0px;
+  font: normal normal normal 1em/1.25 Arial, Helvetica, sans-serif;
+}

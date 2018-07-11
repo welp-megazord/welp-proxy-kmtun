@@ -3,12 +3,12 @@ module.exports = (title, body, scripts) => `
   <html lang="en">
     <head>
       <meta charset="UTF-8">
-      <link rel="stylesheet" href="/style.css">
       <title>${title}</title>
     </head>
-    <body>
+    <body style="margin:0px">
     ${body}
     </body>
     ${scripts}
+    <link rel="stylesheet" type="text/css" href="external.css" />
   </html>
 `;

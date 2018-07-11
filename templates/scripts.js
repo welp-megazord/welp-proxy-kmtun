@@ -10,7 +10,7 @@ module.exports = (items) => `
     ${items.map(item => `
       ReactDOM.hydrate(
         React.createElement(${item}),
-        document.getElementById('${item}')
+        document.getElementById('${item.toLowerCase()}')
       );`).join('\n')}
   </script>
 `;

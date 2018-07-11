@@ -13,13 +13,16 @@ const loadBundle = function(cache, item, filename) {
 const fetchBundles = (path, services, suffix = '', require = false) => {
   Object.keys(services).forEach(item => {
     const filename = `${path}/${item}${suffix}.js`;
+    console.log('filename: ', filename)
     exists(filename)
       .then(() => {
         require ? loadBundle(services, item, filename) : null;
       })
       .catch(err => {
         if (err.code === 'ENOENT') {
-          const url = `${services[item]}${suffix}.js`;
+          const {server, bundle} = services[item];
+          const url = `${server}/${bundle}${suffix}.js`;
+          // const url = `${services[item]}${suffix}.js`;
           console.log(`Fetching: ${url}`);
           // see: https://www.npmjs.com/package/node-fetch
           fetch(url)
