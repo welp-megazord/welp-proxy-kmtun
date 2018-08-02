@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 3000;
 const request = require('request');
+const rp = require('request-promise');
 
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
@@ -35,14 +36,29 @@ const Scripts = require('./templates/scripts');
 //     });
 //   });
 // });
+// Object.values(serviceConfig).forEach(service => {
+//   service.routes.forEach(route => {
+//     app.use(route, (req,res) => {
+//       // console.log(req.originalUrl);
+//       const target = service.server + req.originalUrl;
+//       request(target).pipe(res);
+//     })
+//   })
+// })
 
 Object.values(serviceConfig).forEach(service => {
   service.routes.forEach(route => {
     app.use(route, (req,res) => {
       // console.log(req.originalUrl);
       const target = service.server + req.originalUrl;
-      //incoming data from request target get written to destination (res);
-      request(target).pipe(res);
+      rp(target)
+        .then(data => {
+          res.status(200).send(data);
+        })
+        .catch(err => {
+          console.log(`Error getting ${target}:`, err);
+          res.status(500).send('Internal server error');
+        })
     })
   })
 })
