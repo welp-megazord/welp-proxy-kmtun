@@ -4,6 +4,7 @@ const parser = require('body-parser');
 const fetch = require('node-fetch');
 const app = express();
 const port = process.env.PORT || 3000;
+const request = require('request');
 
 app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
@@ -20,20 +21,31 @@ const Layout = require('./templates/layout');
 const App = require('./templates/app');
 const Scripts = require('./templates/scripts');
 
+// Object.values(serviceConfig).forEach(service => {
+//   service.routes.forEach(route => {
+//     app.use(route, (req, res) => {
+//       const target = service.server + req.originalUrl;
+//       // console.log('Proxy', req.originalUrl, '=>', target);
+//       fetch(target)
+//         .then(proxied => { proxied.body.pipe(res); })
+//         .catch(err => {
+//           console.error(`Error getting ${target}:`, err);
+//           res.status(500).send('Internal server error');
+//         });
+//     });
+//   });
+// });
+
 Object.values(serviceConfig).forEach(service => {
   service.routes.forEach(route => {
-    app.use(route, (req, res) => {
+    app.use(route, (req,res) => {
+      // console.log(req.originalUrl);
       const target = service.server + req.originalUrl;
-      // console.log('Proxy', req.originalUrl, '=>', target);
-      fetch(target)
-        .then(proxied => { proxied.body.pipe(res); })
-        .catch(err => {
-          console.error(`Error getting ${target}:`, err);
-          res.status(500).send('Internal server error');
-        });
-    });
-  });
-});
+      //incoming data from request target get written to destination (res);
+      request(target).pipe(res);
+    })
+  })
+})
 
 const renderComponents = (components, props = {}) => {
   return Object.keys(components).map(item => {

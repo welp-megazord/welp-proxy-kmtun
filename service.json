@@ -1,13 +1,6 @@
 {
-  "Header": {
-    "server": "http://18.144.16.254:8080",
-    "bundle": "app",
-    "routes": [
-      "/api/header/restaurant"
-    ]
-  },
   "Reviews": {
-    "server": "http://13.57.187.117:8080",
+    "server": "http://localhost:2000",
     "bundle": "app",
     "routes": [
       "/api/restaurants",
